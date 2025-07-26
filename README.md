@@ -31,37 +31,35 @@ An intelligent resume ranking system that compares uploaded resumes to a given j
 
 ### 1. Clone the Repository
 
-git clone https://github.com/rakshithdn/ai-resume-ranker.git
+git clone https://github.com/rakshithdn/ai-resume-ranker.git  
 cd ai-resume-ranker
 
-### Create Virtual Environment & Activate
+### 2. Create Virtual Environment & Activate
 
-python -m venv venv
+python -m venv venv  
 source venv/bin/activate   # Windows: venv\Scripts\activate
 
-### Install Requirements
+### 3. Install Requirements
 
 pip install -r requirements.txt
 
-### Run the Flask App
+### 4. Run the Flask App
 
-python app.py
-
+python app.py  
 Then open http://127.0.0.1:5000 in your browser.
+
+---
+
 📥 Download CSV
 After ranking, click the 📥 Download CSV button to export results including ranks and match percentages.
 
-🎯 Future Enhancements
-🔒 Add user authentication (admin/recruiter roles)
-
-💾 Save ranking history in SQLite database
-
-🧠 More advanced skill matching logic
-
-🌐 Ability to scrape job descriptions from LinkedIn
+---
 
 🖼️ UI Preview
-![Preview](screenshot.png)
+![Preview](Screenshot1.png)
+![Preview](Screenshot2.png)
+
+---
 
 🙋‍♂️ Author
 Rakshith D N
