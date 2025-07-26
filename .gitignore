@@ -1,0 +1,16 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore environment
+venv/
+
+# Ignore output
+ranked_results.csv
+resumes/
+
+# Ignore SQLite DB (if you add one later)
+*.db
+
+# Ignore secrets (if you use .env later)
+.env

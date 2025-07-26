@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Resume Ranker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container-wrapper">
+        <div class="glass-card">
+            <h1>🧠 AI Resume Ranker</h1>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="job_description" class="form-label">Paste Job Description:</label>
+                    <textarea class="form-control" id="job_description" name="job_description" rows="6"
+                        required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="resumes" class="form-label">Select Resume PDFs:</label>
+                    <input type="file" class="form-control" name="resumes" id="resumes" accept=".pdf" multiple required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">🚀 Rank Resumes</button>
+            </form>
+
+            {% if results %}
+            <hr>
+            <h3 class="mt-4">📊 Ranked Results</h3>
+            <table class="table table-bordered table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Filename</th>
+                        <th>Match %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file, score in results %}
+                    <tr class="{% if loop.first %}highlight-row fw-bold{% endif %}">
+                        <td>{{ loop.index }}</td>
+                        <td>{% if loop.first %}🥇 {% endif %}{{ file }}</td>
+                        <td>{{ score }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="/download" class="btn btn-outline-secondary download-btn">📥 Download CSV</a>
+
+            <hr>
+            <h3 class="mt-5">🧠 Skill Match Analysis</h3>
+            {% for file, skills in skill_analysis.items() %}
+            <div class="mt-4">
+                <h5>{{ loop.index }}. {{ file }}</h5>
+                <div class="skill-box">
+                    ✅ <strong>Matched Skills:</strong>
+                    <span style="color: green">{{ skills.matched | join(', ') if skills.matched else 'None' }}</span>
+                </div>
+                <div class="missing-box">
+                    ❌ <strong>Missing Skills:</strong>
+                    <span style="color: crimson">{{ skills.missing | join(', ') if skills.missing else 'None' }}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
